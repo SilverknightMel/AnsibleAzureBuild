@@ -1,0 +1,10 @@
+﻿- name: Create Azure VM
+  hosts: localhost
+  connection: local
+  tasks:
+  - name: Get facts for a specific image
+    azure_rm_virtualmachineimage_info:
+      location: eastasia
+      publisher: MicrosoftWindowsServer
+      offer: WindowsServer
+      version: latest
