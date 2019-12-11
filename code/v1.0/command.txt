@@ -1,0 +1,2 @@
+﻿[Silverchen@adsl-172-10-0-4 v1.0]$ ansible-playbook --syntax-check deployWindows_v1.0.yml --vault-id one@prompt
+[Silverchen@adsl-172-10-0-4 v1.0]$ ansible-playbook deployWindows_v1.0.yml --vault-id one@prompt -vvv

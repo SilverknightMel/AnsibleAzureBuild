@@ -1,0 +1,3 @@
+﻿# vm_name: wintestvm{{ 100000 | random }}
+resource_group_name: silver-ansible-RG-DEV
+location: australiasoutheast

@@ -1,0 +1,53 @@
+﻿# Description
+# =========== 
+# This playbook creates resource on Azure 
+---
+- hosts: localhost
+  tasks:
+    - name: Prepare random postfix
+      set_fact:
+        rpfx: "{{ 100000 | random }}"
+      run_once: yes
+
+- name: provision new Azure Windows host
+  hosts: localhost
+  connection: local
+  vars:
+    vm_name: wintestvm{{ rpfx }}
+  vars_files:
+    - vars/var.yml
+    - data_secret/secret.yml
+
+  tasks:
+  - name: create Azure resource group
+    azure_rm_resourcegroup:
+      name: "{{ resource_group_name }}"
+      location: "{{ location }}"      
+      state: present
+
+  - name: Display vm name
+    debug:
+      msg: "This is vm name {{ vm_name }}"
+
+  - name: create Azure virtual network in resource group
+    azure_rm_virtualnetwork:
+      name: "{{ vm_name }}"
+      resource_group: "{{ resource_group_name }}"
+      address_prefixes_cidr:
+      - 10.1.0.0/16
+      state: present
+      
+  - name: create Azure subnet in virtualnetwork
+    azure_rm_subnet:
+      name: '{{ vm_name }}'
+      state: present
+      virtual_network_name: "{{ vm_name }}"
+      resource_group: "{{ resource_group_name }}"
+      address_prefix_cidr: 10.1.0.0/24      
+
+  - name: create Azure storage account
+    azure_rm_storageaccount:
+      name: '{{ vm_name }}'
+      resource_group: "{{ resource_group_name }}"
+      account_type: Standard_LRS
+...      
