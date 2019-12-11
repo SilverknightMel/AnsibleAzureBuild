@@ -1,6 +1,9 @@
-﻿- name: Create Azure VM
+﻿---
+- name: Create Azure VM
   hosts: localhost
   connection: local
+  vars_files:
+    - ~/data-secret/secret.yml
   tasks:
   - name: Create resource group
     azure_rm_resourcegroup:
@@ -51,8 +54,8 @@
       name: schenstor001
       vm_size: Standard_DS1_v2
       os_type: Windows
-      admin_username: azureuser
-      admin_password: Password1234!
+      admin_username: "{{ username }}"
+      admin_password: "{{ pwhash }}"
       network_interfaces: myNICSim01
       image:
         offer: WindowsServer
