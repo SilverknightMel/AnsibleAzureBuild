@@ -1,2 +1,5 @@
 ﻿[Silverchen@adsl-172-10-0-4 v1.0]$ ansible-playbook --syntax-check deployWindows_v1.0.yml --vault-id one@prompt
 [Silverchen@adsl-172-10-0-4 v1.0]$ ansible-playbook deployWindows_v1.0.yml --vault-id one@prompt -vvv
+ERROR! Unable to read source file (data_secretsecret.yml): [Errno 2] No such file or directory: u'data_secretsecret.yml'
+[Silverchen@adsl-172-10-0-4 v1.0]$ ansible-vault view data_secret/secret.yml 
+[Silverchen@adsl-172-10-0-4 v1.0]$ ansible-playbook deployWindows_v1.0.yml --vault-id one@prompt -vvv --tags "winrm"
