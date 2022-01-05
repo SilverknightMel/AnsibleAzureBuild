@@ -3,5 +3,5 @@
     location: eastus
     publisher: OpenLogic
     offer: CentOS
-    sku: '7.1'
+    sku: '8.2'
     version: '7.1.20160308'
