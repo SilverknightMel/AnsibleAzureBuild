@@ -6,5 +6,6 @@
     azure_rm_virtualmachineimage_info:
       location: eastasia
       publisher: MicrosoftWindowsServer
+      test: we are testing only. 
       offer: WindowsServer
       version: latest
